@@ -12,9 +12,9 @@ from aptly_api.parts.snapshots import SnapshotAPISection
 
 
 class Client:
-    def __init__(self, aptly_server_url: str) -> None:
+    def __init__(self, aptly_server_url: str, file_api_timeout: int = 60) -> None:
         self.aptly_server_url = aptly_server_url
-        self.files = FilesAPISection(self.aptly_server_url)
+        self.files = FilesAPISection(self.aptly_server_url, timeout=file_api_timeout)
         self.misc = MiscAPISection(self.aptly_server_url)
         self.packages = PackageAPISection(self.aptly_server_url)
         self.publish = PublishAPISection(self.aptly_server_url)
